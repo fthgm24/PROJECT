@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistem Keuangan - Sistem Manajemen Keuangan</title>
+  
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <link rel="stylesheet" href="css/awal.css">
+</head>
+<body>
+
+  <!-- SIDEBAR NAVIGATION -->
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <div class="brand-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="5" width="20" height="14" rx="3"></rect>
+          <line x1="2" y1="10" x2="22" y2="10"></line>
+          <circle cx="12" cy="15" r="2"></circle>
+          <path d="M6 15h.01M18 15h.01"></path>
+        </svg>
+      </div>
+      <div class="brand-title">KEUANGAN</div>
+      <div class="brand-subtitle">Keuangan</div>
+    </div>
+
+    <nav class="nav-menu">
+      <a class="nav-item active" onclick="switchPage('dashboard', this)">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+        </svg>
+        Dashboard
+      </a>
+
+      <a class="nav-item" onclick="switchPage('transaksi', this)">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+        </svg>
+        Transaksi
+      </a>
+
+      <a class="nav-item" onclick="switchPage('laporan', this)">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+        </svg>
+        Laporan
+      </a>
+
+      <a class="nav-item" onclick="switchPage('kategori', this)">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
+        </svg>
+        Kategori
+      </a>
+
+      <a class="nav-item" onclick="switchPage('event', this)">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+        </svg>
+        Event
+      </a>
+
+      <a class="nav-item" onclick="switchPage('pengaturan', this)">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+        </svg>
+        Pengaturan
+      </a>
+
+      <div class="nav-divider"></div>
+
+      <a class="nav-item logout-item" onclick="handleLogout()">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+        </svg>
+        Logout
+      </a>
+    </nav>
+  </aside>
+
+  <!-- MAIN CONTENT AREA -->
+  <main class="main-content">
+    
+    <!-- Top Header -->
+    <header class="top-header">
+      <div class="header-left">
+        <button class="hamburger-btn" id="hamburgerBtn" aria-label="Toggle Navigation">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+        <div class="header-title-area">
+          <h1 id="pageTitle">Dashboard</h1>
+          <p id="pageSubtitle">Kelola pemasukan dan pengeluaran usaha Anda.</p>
+        </div>
+      </div>
+
+      <div class="header-right">
+        <!-- Date Filter Button -->
+        <button class="date-filter-btn" onclick="openDateModal()">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+          </svg>
+          <span id="selectedDateText">1 - 23 Juli 2026</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+
+        <!-- User Profile Dropdown -->
+        <div class="user-profile" onclick="switchPage('pengaturan')">
+          <div class="user-avatar">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+            </svg>
+          </div>
+          <div class="user-info">
+            <span class="user-name" id="displayUserName">User</span>
+            <span class="user-role">—</span>
+          </div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="color: var(--text-muted); margin-left: 2px;">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+          </svg>
+        </div>
+      </div>
+    </header>
+
+    <!-- SECTION 1: DASHBOARD PAGE (DEFAULT - MATCHES PHOTO) -->
+    <div class="page-section active" id="view-dashboard">
+      
+      <!-- Top Metric Cards -->
+      <section class="metrics-grid">
+        <!-- Card 1: Total Pemasukan -->
+        <div class="metric-card">
+          <div class="metric-icon-wrapper blue">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+            </svg>
+          </div>
+          <div class="metric-details">
+            <span class="metric-label">TOTAL PEMASUKAN</span>
+            <span class="metric-value" id="valTotalPemasukan">Rp 0</span>
+            <span class="metric-trend up">
+              <span>↑</span> Realtime database
+            </span>
+          </div>
+        </div>
+
+        <!-- Card 2: Total Pengeluaran -->
+        <div class="metric-card">
+          <div class="metric-icon-wrapper pink">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+            </svg>
+          </div>
+          <div class="metric-details">
+            <span class="metric-label">TOTAL PENGELUARAN</span>
+            <span class="metric-value" id="valTotalPengeluaran">Rp 0</span>
+            <span class="metric-trend down">
+              <span>↓</span> Realtime database
+            </span>
+          </div>
+        </div>
+
+        <!-- Card 3: Keuntungan Bersih -->
+        <div class="metric-card">
+          <div class="metric-icon-wrapper green">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+            </svg>
+          </div>
+          <div class="metric-details">
+            <span class="metric-label">KEUNTUNGAN BERSIH</span>
+            <span class="metric-value" id="valKeuntunganBersih">Rp 0</span>
+            <span class="metric-trend up">
+              <span>↑</span> Realtime database
+            </span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Middle Grid (Chart & Summary) -->
+      <section class="middle-grid">
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">Grafik Pemasukan & Pengeluaran</h2>
+            <select class="select-dropdown" id="chartPeriodSelect" onchange="updateChartPeriod(this.value)">
+              <option value="6bulan">6 Bulan Terakhir</option>
+              <option value="3bulan">3 Bulan Terakhir</option>
+              <option value="tahun">Tahun Ini</option>
+            </select>
+          </div>
+
+          <div class="chart-legend">
+            <div class="legend-item">
+              <span class="legend-color blue"></span>
+              <span>Pemasukan</span>
+            </div>
+            <div class="legend-item">
+              <span class="legend-color light-blue"></span>
+              <span>Pengeluaran</span>
+            </div>
+          </div>
+
+          <div class="chart-container">
+            <canvas id="financeChart"></canvas>
+          </div>
+        </div>
+
+        <!-- Ringkasan Bulan Ini -->
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">Ringkasan Bulan Ini</h2>
+          </div>
+
+          <div class="summary-list">
+            <div class="summary-item">
+              <div class="summary-icon blue">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                </svg>
+              </div>
+              <div class="summary-info">
+                <span class="summary-label">Total Pemasukan</span>
+                <span class="summary-amount" id="sumPemasukan">Rp 0</span>
+              </div>
+            </div>
+
+            <div class="summary-item">
+              <div class="summary-icon pink">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+                </svg>
+              </div>
+              <div class="summary-info">
+                <span class="summary-label">Total Pengeluaran</span>
+                <span class="summary-amount" id="sumPengeluaran">Rp 0</span>
+              </div>
+            </div>
+
+            <div class="summary-item">
+              <div class="summary-icon green">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                </svg>
+              </div>
+              <div class="summary-info">
+                <span class="summary-label">Keuntungan Bersih</span>
+                <span class="summary-amount green-text" id="sumKeuntungan">Rp 0</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Bottom Grid (Table & Quick Actions) -->
+      <section class="bottom-grid">
+        <!-- Transaksi Terbaru Table -->
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">Transaksi Terbaru</h2>
+            <a onclick="switchPage('transaksi')" class="see-all-link">Lihat Semua</a>
+          </div>
+
+          <div class="table-responsive">
+            <table class="custom-table">
+              <thead>
+                <tr>
+                  <th>Tanggal</th>
+                  <th>Keterangan</th>
+                  <th>Jenis</th>
+                  <th>Kategori</th>
+                  <th>Nominal</th>
+                  <th>Aksi</th>
+                </tr>
+              </thead>
+              <tbody id="dashTransactionTable">
+                <!-- Rows injected dynamically -->
+              </tbody>
+            </table>
+          </div>
+
+          <a onclick="switchPage('transaksi')" class="table-footer-link">Lihat Semua Transaksi</a>
+        </div>
+
+        <!-- Aksi Cepat Grid -->
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">Aksi Cepat</h2>
+          </div>
+
+          <div class="quick-actions-grid">
+            <div class="action-btn-card" onclick="openModal('Pemasukan')">
+              <div class="action-btn-icon blue-bg">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+                </svg>
+              </div>
+              <span class="action-btn-text">Tambah Pemasukan</span>
+            </div>
+
+            <div class="action-btn-card" onclick="openModal('Pengeluaran')">
+              <div class="action-btn-icon pink-bg">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M20 12H4" />
+                </svg>
+              </div>
+              <span class="action-btn-text">Tambah Pengeluaran</span>
+            </div>
+
+            <div class="action-btn-card" onclick="switchPage('event'); openEventModal();">
+              <div class="action-btn-icon blue-soft">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+              </div>
+              <span class="action-btn-text">Buat Event</span>
+            </div>
+
+            <div class="action-btn-card" onclick="switchPage('laporan')">
+              <div class="action-btn-icon blue-soft">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+              </div>
+              <span class="action-btn-text">Lihat Laporan</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- SECTION 2: TRANSAKSI PAGE -->
+    <div class="page-section" id="view-transaksi">
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title">Daftar Seluruh Transaksi</h2>
+          <div style="display: flex; gap: 10px;">
+            <button class="btn-primary" onclick="openModal('Pemasukan')">+ Pemasukan</button>
+            <button class="btn-outline" style="color: var(--red-danger); border-color: var(--red-danger);" onclick="openModal('Pengeluaran')">+ Pengeluaran</button>
+          </div>
+        </div>
+
+        <div class="table-actions-header">
+          <input type="text" class="search-input" id="searchTransactionInput" placeholder="Cari keterangan / kategori..." onkeyup="filterTransactions()">
+          <select class="select-dropdown" id="filterTypeSelect" onchange="filterTransactions()">
+            <option value="semua">Semua Jenis</option>
+            <option value="Pemasukan">Pemasukan</option>
+            <option value="Pengeluaran">Pengeluaran</option>
+          </select>
+        </div>
+
+        <div class="table-responsive">
+          <table class="custom-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Tanggal</th>
+                <th>Keterangan</th>
+                <th>Jenis</th>
+                <th>Kategori</th>
+                <th>Nominal</th>
+                <th>Aksi</th>
+              </tr>
+            </thead>
+            <tbody id="fullTransactionTable">
+              <!-- Dynamically populated -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 3: LAPORAN PAGE -->
+    <div class="page-section" id="view-laporan">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+        <h2>Laporan Ringkasan Keuangan</h2>
+        <button class="btn-primary" onclick="exportCSVData()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+          </svg>
+          Export Laporan Excel (CSV)
+        </button>
+      </div>
+
+      <div class="middle-grid">
+        <!-- Income Breakdown Card -->
+        <div class="card">
+          <h3 class="card-title" style="margin-bottom: 18px;">Persentase Pemasukan per Kategori</h3>
+          <div class="progress-bar-container">
+            <div class="progress-info">
+              <span>Sewa Booth</span>
+              <span>82% (Rp 7.000.000)</span>
+            </div>
+            <div class="progress-track">
+              <div class="progress-fill" style="width: 82%;"></div>
+            </div>
+          </div>
+
+          <div class="progress-bar-container">
+            <div class="progress-info">
+              <span>Cetak Foto Tambahan</span>
+              <span>12% (Rp 1.000.000)</span>
+            </div>
+            <div class="progress-track">
+              <div class="progress-fill" style="width: 12%; background-color: #3b82f6;"></div>
+            </div>
+          </div>
+
+          <div class="progress-bar-container">
+            <div class="progress-info">
+              <span>Merchandise & Accessories</span>
+              <span>6% (Rp 500.000)</span>
+            </div>
+            <div class="progress-track">
+              <div class="progress-fill" style="width: 6%; background-color: #10b981;"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Expense Breakdown Card -->
+        <div class="card">
+          <h3 class="card-title" style="margin-bottom: 18px;">Persentase Pengeluaran per Kategori</h3>
+          <div class="progress-bar-container">
+            <div class="progress-info">
+              <span>Operasional & Kertas Foto</span>
+              <span>55% (Rp 1.292.500)</span>
+            </div>
+            <div class="progress-track">
+              <div class="progress-fill" style="width: 55%; background-color: #ef4444;"></div>
+            </div>
+          </div>
+
+          <div class="progress-bar-container">
+            <div class="progress-info">
+              <span>Transportasi & Bensin</span>
+              <span>30% (Rp 705.000)</span>
+            </div>
+            <div class="progress-track">
+              <div class="progress-fill" style="width: 30%; background-color: #f59e0b;"></div>
+            </div>
+          </div>
+
+          <div class="progress-bar-container">
+            <div class="progress-info">
+              <span>Maintenance Alat</span>
+              <span>15% (Rp 352.500)</span>
+            </div>
+            <div class="progress-track">
+              <div class="progress-fill" style="width: 15%; background-color: #8b5cf6;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 4: KATEGORI PAGE -->
+    <div class="page-section" id="view-kategori">
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title">Manajemen Kategori Transaksi</h2>
+          <button class="btn-primary" onclick="openAddCategoryModal()">+ Tambah Kategori Baru</button>
+        </div>
+
+        <div class="table-responsive">
+          <table class="custom-table">
+            <thead>
+              <tr>
+                <th>Nama Kategori</th>
+                <th>Tipe</th>
+                <th>Jumlah Transaksi</th>
+                <th>Aksi</th>
+              </tr>
+            </thead>
+            <tbody id="categoryTableBody">
+              <tr>
+                <td><strong>Sewa Booth</strong></td>
+                <td><span class="badge badge-success">Pemasukan</span></td>
+                <td>14 Transaksi</td>
+                <td><button class="action-dots">⋮</button></td>
+              </tr>
+              <tr>
+                <td><strong>Operasional</strong></td>
+                <td><span class="badge badge-danger">Pengeluaran</span></td>
+                <td>8 Transaksi</td>
+                <td><button class="action-dots">⋮</button></td>
+              </tr>
+              <tr>
+                <td><strong>Transportasi</strong></td>
+                <td><span class="badge badge-danger">Pengeluaran</span></td>
+                <td>6 Transaksi</td>
+                <td><button class="action-dots">⋮</button></td>
+              </tr>
+              <tr>
+                <td><strong>Merchandise</strong></td>
+                <td><span class="badge badge-success">Pemasukan</span></td>
+                <td>3 Transaksi</td>
+                <td><button class="action-dots">⋮</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 5: EVENT PAGE -->
+    <div class="page-section" id="view-event">
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title">Jadwal Event</h2>
+          <button class="btn-primary" onclick="openEventModal()">+ Buat Event Baru</button>
+        </div>
+
+        <div class="table-responsive">
+          <table class="custom-table">
+            <thead>
+              <tr>
+                <th>Tanggal Event</th>
+                <th>Nama Event / Client</th>
+                <th>Lokasi</th>
+                <th>Paket</th>
+                <th>Status</th>
+                <th>Aksi</th>
+              </tr>
+            </thead>
+            <tbody id="eventTableBody">
+              <tr>
+                <td>22/07/2026</td>
+                <td>Wedding A (Budi & Annisa)</td>
+                <td>Hotel Mulia, Jakarta</td>
+                <td>Paket Unlimited 4 Jam</td>
+                <td><span class="badge badge-success">Selesai</span></td>
+                <td><button class="action-dots">⋮</button></td>
+              </tr>
+              <tr>
+                <td>21/07/2026</td>
+                <td>Wisuda B (Universitas X)</td>
+                <td>Balai Kartini</td>
+                <td>Paket 3 Jam</td>
+                <td><span class="badge badge-success">Selesai</span></td>
+                <td><button class="action-dots">⋮</button></td>
+              </tr>
+              <tr>
+                <td>28/07/2026</td>
+                <td>Birthday Party C (Rina 17th)</td>
+                <td>Cafe Skyline</td>
+                <td>Paket 2 Jam</td>
+                <td><span class="badge badge-info">Mendatang</span></td>
+                <td><button class="action-dots">⋮</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 6: PENGATURAN PAGE -->
+    <div class="page-section" id="view-pengaturan">
+      <div class="middle-grid">
+        <div class="card">
+          <h3 class="card-title" style="margin-bottom: 20px;">Profil Usaha & Akun</h3>
+          <form onsubmit="saveSettings(event)">
+            <div class="form-group">
+              <label>Nama Usaha</label>
+              <input type="text" class="form-control" id="settingBusinessName" value="Keuangan Saya">
+            </div>
+            <div class="form-group">
+              <label>Nama Admin</label>
+              <input type="text" class="form-control" id="settingAdminName" value="Astor">
+            </div>
+            <div class="form-group">
+              <label>Email Kontak</label>
+              <input type="email" class="form-control" value="admin@sistemkeuangan.id">
+            </div>
+            <button type="submit" class="btn-primary">Simpan Perubahan</button>
+          </form>
+        </div>
+
+        <div class="card">
+          <h3 class="card-title" style="margin-bottom: 20px;">Tampilan & Preferensi</h3>
+          
+          <label class="switch-label">
+            <span><strong>Mode Gelap (Dark Mode)</strong></span>
+            <input type="checkbox" class="switch-input" id="darkModeToggle" onchange="toggleDarkMode(this.checked)">
+            <span class="switch-slider"></span>
+          </label>
+          
+          <div style="height: 1px; background-color: var(--border-color); margin: 16px 0;"></div>
+
+          <div class="form-group">
+            <label>Mata Uang Utama</label>
+            <select class="form-control">
+              <option>Rupiah Indonesia (Rp / IDR)</option>
+              <option>US Dollar ($ / USD)</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- MODAL: ADD TRANSACTION -->
+  <div class="modal-overlay" id="transactionModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 class="modal-title" id="modalTitle">Tambah Transaksi</h3>
+        <button class="close-modal-btn" onclick="closeModal('transactionModal')">&times;</button>
+      </div>
+      <form id="transactionForm" onsubmit="handleTransactionSubmit(event)">
+        <div class="form-group">
+          <label>Keterangan Transaksi</label>
+          <input type="text" class="form-control" id="inputDesc" placeholder="Contoh: Sewa Wedding B" required>
+        </div>
+        <div class="form-group">
+          <label>Kategori</label>
+          <select class="form-control" id="inputCategory">
+            <option value="Sewa Booth">Sewa Booth</option>
+            <option value="Operasional">Operasional</option>
+            <option value="Transportasi">Transportasi</option>
+            <option value="Print Kertas">Print Kertas</option>
+            <option value="Merchandise">Merchandise</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Nominal (Rp)</label>
+          <input type="number" class="form-control" id="inputAmount" placeholder="Contoh: 500000" required>
+        </div>
+        <button type="submit" class="submit-btn">Simpan Transaksi</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: DATE RANGE FILTER -->
+  <div class="modal-overlay" id="dateFilterModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 class="modal-title">Pilih Rentang Tanggal</h3>
+        <button class="close-modal-btn" onclick="closeModal('dateFilterModal')">&times;</button>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 10px;">
+        <button class="btn-outline" onclick="setDateRange('Hari Ini (27 Juli 2026)')">Hari Ini</button>
+        <button class="btn-outline" onclick="setDateRange('7 Hari Terakhir')">7 Hari Terakhir</button>
+        <button class="btn-outline" onclick="setDateRange('1 - 23 Juli 2026')">1 - 23 Juli 2026 (Default)</button>
+        <button class="btn-outline" onclick="setDateRange('Bulan Ini (Juli 2026)')">Seluruh Bulan Juli 2026</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: EVENT CREATION -->
+  <div class="modal-overlay" id="eventModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 class="modal-title">Buat Event Baru</h3>
+        <button class="close-modal-btn" onclick="closeModal('eventModal')">&times;</button>
+      </div>
+      <form onsubmit="handleEventSubmit(event)">
+        <div class="form-group">
+          <label>Nama Event / Client</label>
+          <input type="text" class="form-control" id="inputEventName" placeholder="Contoh: Wedding Dinda & Farhan" required>
+        </div>
+        <div class="form-group">
+          <label>Tanggal Event</label>
+          <input type="date" class="form-control" id="inputEventDate" required>
+        </div>
+        <div class="form-group">
+          <label>Lokasi Event</label>
+          <input type="text" class="form-control" id="inputEventLocation" placeholder="Contoh: Ballroom Hotel Santika" required>
+        </div>
+        <div class="form-group">
+          <label>Paket Layanan</label>
+          <select class="form-control" id="inputEventPackage">
+            <option>Paket 2 Jam Unlimited</option>
+            <option>Paket 3 Jam Unlimited</option>
+            <option>Paket 4 Jam Unlimited</option>
+          </select>
+        </div>
+        <button type="submit" class="submit-btn">Simpan Event</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: ADD CATEGORY -->
+  <div class="modal-overlay" id="categoryModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 class="modal-title">Tambah Kategori Baru</h3>
+        <button class="close-modal-btn" onclick="closeModal('categoryModal')">&times;</button>
+      </div>
+      <form onsubmit="handleCategorySubmit(event)">
+        <div class="form-group">
+          <label>Nama Kategori</label>
+          <input type="text" class="form-control" id="inputCategoryName" placeholder="Contoh: Marketing & Iklan" required>
+        </div>
+        <div class="form-group">
+          <label>Tipe Transaksi</label>
+          <select class="form-control" id="inputCategoryType">
+            <option value="Pemasukan">Pemasukan</option>
+            <option value="Pengeluaran">Pengeluaran</option>
+          </select>
+        </div>
+        <button type="submit" class="submit-btn">Simpan Kategori</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION CONTAINER -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script src="js/awal.js"></script>
+</body>
+</html>
