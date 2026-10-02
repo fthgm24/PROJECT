@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="logo.jpg">
+    <title>Toko Buku Gramedia</title>
+    <link rel="stylesheet" href="cover.css">
+</head>
+<body>
+    <!--NAVBAR-->
+    <nav class="navbar">    
+        <div class="brand">
+            <img src="logo.jpg" alt="logo-toko" class="img-logo">
+            <span class="logo">Gramedia</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#">Beranda</a></li>
+            <li><a href="#book">Katalog Buku</a></li>
+            <li><a href="#form">Form Pembelian</a></li>
+        </ul>
+    </nav>
+    <header id="home" class="hero-content">
+        <h1>AYO BELANJA DI GRAMEDIA</h1>
+        <p>Buruan, Banyak Diskon Minggu Ini</p>
+        <button type="button">
+            <a href="#book">Lihat Buku</a>
+        </button>
+    </header>
+    <!--KATALOG BUKU-->
+    <main id="book" class="container-content">
+        <h2 class="section-title">Katalog Buku</h2>
+        <div class="books-grid">
+
+            <div class="card">
+                <img src="buku1.jpg" alt="Sepersi Mie Ayam Sebelum Mati" />
+                <div class="card info">
+                    <p class="book-title">Seporsi Mie Ayam Sebelum Mati</p>
+                    <p class="book-price">Rp 100.000</p>
+                    <p class="book-stock">Stok: 10</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="buku2.jpg" alt="Sisi Tergelap Surga" />
+                <div class="card info">
+                    <p class="book-title">Sisi Tergelap Surga</p>
+                    <p class="book-price">Rp 75.000</p>
+                    <p class="book-stock">Stok: 5</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="buku3.jpg" alt="Cantik Itu Luka" />
+                <div class="card info">
+                    <p class="book-title">Cantik Itu Luka</p>
+                    <p class="book-price">Rp 50.000</p>
+                    <p class="book-stock">Stok: 8</p>
+                </div>
+            </div>
+
+        </div>
+    </main>
+    <!--FORMULIR PEMBELIAN-->
+    <section id="form">
+        <h2 class="section-title">Formulir Pembelian</h2>
+        
+        <form action="#" method="POST" class="container-form">
+            <label for="nama">Nama Pembeli</label>
+                <input type="text" name="nama" id="nama"
+                placeholder="Masukkan Nama Lengkap" required/>
+                
+                <label for="telepon">Nomor Telepon</label>
+                    <input type="text" name="telepon" id="telepon"
+                    placeholder="Masukkan Nomor Telepon" required/>
+
+                    <label for="buka">Pilih Buku</label>
+
+                    label for="telepon">Nomor Telepon</label>
+                    <input type="text" name="telepon" id="telepon"
+                    placeholder="Masukkan Nomor Telepon" required/>
+
+                    <label for="buka">Pilih Buku</label>
+                    <select name="buku" id="buku" required> 
+                        <option value="">-- Pilih Buku --</option>
+                        <option value="buku1">Seporsi Mie Ayam Sebelum mati</option>
+                        <option value="buku2">Sisi Tergelap Surga</option>
+                        <option value="buku3">Cantik Itu Luka</option>
+                    </select>
+
+                    <label for="alamat">Alamat Pengirimian</label>
+                        <textarea name="alamat" id="alamat" placeholder="Masukkan Alamat Lengkap" rows="3" required></textarea>
+
+                        <div>
+                            <button type="submit">kirim pesanan</button>
+                            <button type="reset">batal</button>
+                        </div>
+          </form>
+          </section>
+          
+          <!--FOOTER-->
+                        <footer>
+                            <p>&copy;Gramedia</p>
+                        </footer>
+
+
+
+</body>
+</html>
